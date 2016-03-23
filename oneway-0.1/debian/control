@@ -1,0 +1,13 @@
+Source: oneway
+Section: utils
+Priority: optional
+Maintainer: Connor Brinton <connor.brinton+OW@gmail.com>
+Build-Depends: debhelper (>= 8.0.0)
+Standards-Version: 3.9.4
+Homepage: https://github.com/connorbrinton/oneway
+
+Package: oneway
+Architecture: all
+Depends: estr, ${misc:Depends}
+Description: A file synchronization tool allowing continuous replication of files using rsync over a single ssh channel configured by a directory-specific .oneway file.
+ A file synchronization tool allowing continuous replication of files using rsync over a single ssh channel configured by a directory-specific .oneway file.

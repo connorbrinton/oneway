@@ -1,0 +1,11 @@
+Package: oneway
+Version: 0.1
+Architecture: all
+Maintainer: Connor Brinton <connor.brinton+OW@gmail.com>
+Installed-Size: 29
+Depends: estr
+Section: utils
+Priority: optional
+Homepage: https://github.com/connorbrinton/oneway
+Description: A file synchronization tool allowing continuous replication of files using rsync over a single ssh channel configured by a directory-specific .oneway file.
+ A file synchronization tool allowing continuous replication of files using rsync over a single ssh channel configured by a directory-specific .oneway file.
