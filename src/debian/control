@@ -8,6 +8,6 @@ Homepage: https://github.com/connorbrinton/oneway
 
 Package: oneway
 Architecture: all
-Depends: estr, ${misc:Depends}
+Depends: entr, ${misc:Depends}
 Description: A file synchronization tool allowing continuous replication of files using rsync over a single ssh channel configured by a directory-specific .oneway file.
  A file synchronization tool allowing continuous replication of files using rsync over a single ssh channel configured by a directory-specific .oneway file.
