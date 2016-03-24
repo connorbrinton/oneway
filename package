@@ -8,14 +8,24 @@ cd "$self"
 src="src"
 dist="dist"
 version="0.1"
-deb_src="$dist/oneway-$version"
+deb_src_bare="oneway-$version"
+deb_src="$dist/$deb_src_bare"
 deb_archive="$dist/oneway_$version.orig.tar.gz"
+
+# Clean the previous build
+rm -r "$dist"
 
 # Create the debian source directory
 mkdir -p "$dist"
 mkdir -p "$deb_src"
 cp -r "$src"/* "$deb_src/"
-tar -zcf "$deb_archive" "$deb_src"/*
+# Copy specific important files
+cp "LICENSE" "$deb_src/"
+cp "README.md" "$deb_src/"
+
+# Create the archive
+
+tar -C "$dist/" -zcf "$deb_archive" "$deb_src_bare/"
 
 # Build the debian packages
 cd "$deb_src"
