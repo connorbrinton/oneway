@@ -1,8 +1,0 @@
-Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
-Upstream-Name: oneway
-Source: https://github.com/connorbrinton/oneway
-
-Files: *
-Copyright: 2016 Connor Brinton <connor.brinton+OW@gmail.com>
-License:
- Licensed under GPL v3 (see LICENSE file).
