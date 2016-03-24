@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+# Get directory in which this package resides
+self="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+cd "$self"
+
+# Change the following line to update version numbers
+src="src"
+dist="dist"
+version="0.1"
+deb_src="$dist/oneway-$version"
+deb_archive="$dist/oneway_$version.orig.tar.gz"
+
+# Create the debian source directory
+mkdir -p "$dist"
+mkdir -p "$deb_src"
+cp -r "$src"/* "$deb_src/"
+tar -zcf "$deb_archive" "$deb_src"/*
+
+# Build the debian packages
+cd "$deb_src"
+debuild -us -uc
+echo "Don't forget to sign the produced archives."
