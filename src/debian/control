@@ -1,7 +1,7 @@
 Source: oneway
 Section: utils
 Priority: optional
-Maintainer: Connor Brinton <connor.brinton+OW@gmail.com>
+Maintainer: Connor Brinton <connor.brinton+LP@gmail.com>
 Build-Depends: debhelper (>= 9.0.0)
 Standards-Version: 3.9.5
 Homepage: https://github.com/connorbrinton/oneway

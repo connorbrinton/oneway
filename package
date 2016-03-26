@@ -29,5 +29,5 @@ tar -C "$dist/" -zcf "$deb_archive" "$deb_src_bare/"
 
 # Build the debian packages
 cd "$deb_src"
-debuild -us -uc
+debuild -S -us -uc
 echo "Don't forget to sign the produced archives."
