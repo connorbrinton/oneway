@@ -1,5 +1,11 @@
 #!/usr/bin/env sh
 
+# Deal with passed arguments
+sync_only=false
+if [ ! -z "$1" ] && [ "$1" = "sync" ]; then
+	sync_only=true
+fi
+
 # Check for configuration file
 if [ ! -f "./.oneway" ];
 then
@@ -30,7 +36,8 @@ establish() {
 }
 
 sync() {
-	rsync -rlptsz --update --delete --progress --stats -e "ssh -o 'ControlPath="~/.ssh/ctl/%L-%r@%h:%p"'" ./ "$user@$host:$path"	
+	rsync -rlptsz --update --delete -e "ssh -o 'ControlPath="~/.ssh/ctl/%L-%r@%h:%p"'" ./ "$user@$host:$path"
+	echo "Sync complete at `date '+%_I:%M:%S %p'`"
 }
 
 # Clean up ssh connection
@@ -39,14 +46,20 @@ finally() {
 	exit
 }
 
+if $sync_only; then
+	echo -n "File change detected... "
+	sync
+	exit $?
+fi
+
 # Establish the connection
 establish
 trap finally INT
 echo "Authentication success. Waiting for file changes..."
 
 # Synchronize files to remote platform
-$sync
-find . | entr $sync
+sync
+find . | entr $0 sync
 
 # Tidy up
 finally

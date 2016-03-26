@@ -1,3 +1,8 @@
 This is my code. Isn't it nice? I hope it makes it to the server :)
 My added stuff. More added stuff. Even more added stuff. Adding more to test stuff.
-Now testing spaces in directory...
+Now testing spaces in directory... Testing again...
+Testing initial sync + change detection.
+It worked! Now I'm happy :)
+Removing progress statements.
+Now adding a timestamp to each synchronization.
+This is great.
