@@ -1,12 +1,52 @@
 #!/usr/bin/env sh
 
-user="connorb3"
-host="myth.stanford.edu"
+# Check for configuration file
+if [ ! -f "./.oneway" ];
+then
+	echo ".oneway configuration file not found."
+	exit 1
+fi
 
-mkdir -p ~/.ssh/ctl
-ssh -Nf -o ControlMaster=yes -o ControlPath="~/.ssh/ctl/%L-%r@%h:%p" "$user@$host"
+# Load user settings
+. ./.oneway
 
-echo "Sleeping"
-sleep 3
+# Verify user settings
+if [ -z "$user" ]; then
+	user="$USER"
+fi
+if [ -z "$host" ]; then
+	echo "'host' not found in .oneway file."
+	exit 1
+fi
+if [ -z "$path" ]; then
+	echo "'path' not found in .oneway file."
+	exit 1
+fi
 
-ssh -O exit -o ControlPath="~/.ssh/ctl/%L-%r@%h:%p" "$user@$host"
+# Set up master connection
+establish() {
+	mkdir -p ~/.ssh/ctl
+	ssh -Nf -o ControlMaster=yes -o ControlPath="~/.ssh/ctl/%L-%r@%h:%p" -o ServerAliveInterval=60 "$user@$host"
+}
+
+sync() {
+	rsync -rlptsz --update --delete --progress --stats -e "ssh -o 'ControlPath="~/.ssh/ctl/%L-%r@%h:%p"'" ./ "$user@$host:$path"	
+}
+
+# Clean up ssh connection
+finally() {
+	ssh -O exit -o ControlPath="~/.ssh/ctl/%L-%r@%h:%p" "$user@$host"
+	exit
+}
+
+# Establish the connection
+establish
+trap finally INT
+echo "Authentication success. Waiting for file changes..."
+
+# Synchronize files to remote platform
+$sync
+find . | entr $sync
+
+# Tidy up
+finally
