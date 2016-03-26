@@ -42,7 +42,8 @@ sync() {
 
 # Clean up ssh connection
 finally() {
-	ssh -O exit -o ControlPath="~/.ssh/ctl/%L-%r@%h:%p" "$user@$host"
+	ssh -O exit -o ControlPath="~/.ssh/ctl/%L-%r@%h:%p" "$user@$host" > /dev/null 2>&1
+	echo
 	exit
 }
 
@@ -55,6 +56,7 @@ fi
 # Establish the connection
 establish
 trap finally INT
+echo
 echo "Authentication success. Waiting for file changes..."
 
 # Synchronize files to remote platform
