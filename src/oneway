@@ -28,6 +28,9 @@ if [ -z "$path" ]; then
 	echo "'path' not found in .oneway file."
 	exit 1
 fi
+if [ -z "$exclude" ]; then
+	exclude=""
+fi
 
 # Set up master connection
 establish() {
@@ -36,7 +39,7 @@ establish() {
 }
 
 sync() {
-	rsync -rlptsz --update --delete -e "ssh -o 'ControlPath="~/.ssh/ctl/%L-%r@%h:%p"'" ./ "$user@$host:$path"
+	rsync -rlptsz --exclude ./.oneway --exclude "$exclude" --update --delete -e "ssh -o 'ControlPath="~/.ssh/ctl/%L-%r@%h:%p"'" ./ "$user@$host:$path"
 	echo "Sync complete at `date '+%_I:%M:%S %p'`"
 }
 
