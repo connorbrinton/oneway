@@ -1,3 +1,9 @@
+oneway (0.3-1) trusty; urgency=low
+
+  * Add support for rsync exclude directive.
+
+ -- Connor Brinton <connor.brinton+LP@gmail.com>  Wed, 30 Mar 2016 15:43:27 -0700
+
 oneway (0.2-1) trusty; urgency=low
 
   * Uploading to PPA.
