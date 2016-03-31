@@ -1,3 +1,9 @@
+oneway (0.4-1) trusty; urgency=low
+
+  * Fix configuration file not being excluded.
+
+ -- Connor Brinton <connor.brinton+LP@gmail.com>  Thu, 31 Mar 2016 09:25:42 -0700
+
 oneway (0.3-1) trusty; urgency=low
 
   * Add support for rsync exclude directive.
