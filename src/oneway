@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 # Deal with passed arguments
 sync_only=false
@@ -64,7 +64,7 @@ echo "Authentication success. Waiting for file changes..."
 
 # Synchronize files to remote platform
 while true; do
-find . | entr -d $0 sync
+find . | entr -d $0 sync 2> >(grep -v -e "entr: directory altered" -e "entr: cannot open" 1>&2)
 done
 
 # Tidy up
