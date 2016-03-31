@@ -63,8 +63,9 @@ echo
 echo "Authentication success. Waiting for file changes..."
 
 # Synchronize files to remote platform
-sync
-find . | entr $0 sync
+while true; do
+find . | entr -d $0 sync
+done
 
 # Tidy up
 finally

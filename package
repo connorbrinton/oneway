@@ -7,7 +7,7 @@ cd "$self"
 # Change the following line to update version numbers
 src="src"
 dist="dist"
-version="0.4"
+version="0.5"
 deb_src_bare="oneway-$version"
 deb_src="$dist/$deb_src_bare"
 deb_archive="$dist/oneway_$version.orig.tar.gz"

@@ -1,3 +1,9 @@
+oneway (0.5-1) trusty; urgency=low
+
+  * Add directory watching support (for new file watching).
+
+ -- Connor Brinton <connor.brinton+LP@gmail.com>  Thu, 31 Mar 2016 10:30:08 -0700
+
 oneway (0.4-1) trusty; urgency=low
 
   * Fix configuration file not being excluded.
